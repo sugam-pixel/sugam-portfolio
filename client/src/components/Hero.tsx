@@ -124,7 +124,7 @@ export default function Hero() {
           {/* Funky Playground Link */}
           <motion.a
             href="#playground"
-            className="absolute -bottom-12 md:-bottom-4 right-0 md:-right-12 z-40 hidden md:flex items-center gap-2 bg-primary text-primary-foreground px-4 py-2 rounded-full text-sm font-bold shadow-lg cursor-pointer hover:bg-primary/90"
+            className="relative md:absolute mt-8 md:mt-0 md:-bottom-4 right-0 md:-right-12 z-40 flex items-center gap-2 bg-primary text-primary-foreground px-4 py-2 rounded-full text-sm font-bold shadow-lg cursor-pointer hover:bg-primary/90"
             initial={{ y: 0, rotate: 5 }}
             animate={{ y: [-5, 5, -5] }}
             whileHover={{ scale: 1.1, rotate: 0 }}

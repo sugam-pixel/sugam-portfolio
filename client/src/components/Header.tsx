@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react";
-import { motion, useScroll, useSpring } from "framer-motion";
-import { Moon, Sun, FileText, Linkedin } from "lucide-react";
+import { motion, useScroll, useSpring, AnimatePresence } from "framer-motion";
+import { Moon, Sun, FileText, Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 export default function Header() {
   const [isDark, setIsDark] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, {
     stiffness: 100,
@@ -36,6 +37,7 @@ export default function Header() {
     const element = document.getElementById(id);
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
+      setIsMobileMenuOpen(false);
     }
   };
 
@@ -47,12 +49,13 @@ export default function Header() {
       />
       <div className="container mx-auto px-4 h-16 flex items-center justify-between">
         <div 
-          className="font-bold text-lg tracking-tight cursor-pointer"
+          className="font-bold text-lg tracking-tight cursor-pointer z-50 relative"
           onClick={() => scrollToSection("hero")}
         >
           Sugam Sharma
         </div>
 
+        {/* Desktop Nav */}
         <nav className="hidden md:flex items-center space-x-8 text-sm font-medium">
           {["Experience", "Skills", "Work", "Playground"].map((item) => (
             <button
@@ -65,7 +68,7 @@ export default function Header() {
           ))}
         </nav>
 
-        <div className="flex items-center space-x-2">
+        <div className="flex items-center space-x-2 z-50 relative">
           <Button variant="ghost" size="icon" onClick={toggleTheme} className="rounded-full">
             {isDark ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
           </Button>
@@ -75,7 +78,47 @@ export default function Header() {
               Resume
             </Button>
           </a>
+          
+          {/* Mobile Menu Toggle */}
+          <Button 
+            variant="ghost" 
+            size="icon" 
+            className="md:hidden rounded-full"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          >
+            {isMobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          </Button>
         </div>
+
+        {/* Mobile Nav Overlay */}
+        <AnimatePresence>
+          {isMobileMenuOpen && (
+            <motion.div
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              className="absolute top-0 left-0 right-0 bg-background border-b border-border p-4 pt-20 md:hidden shadow-xl"
+            >
+              <nav className="flex flex-col space-y-4 text-center">
+                {["Experience", "Skills", "Work", "Playground"].map((item) => (
+                  <button
+                    key={item}
+                    onClick={() => scrollToSection(item.toLowerCase())}
+                    className="text-lg font-medium py-2 hover:text-primary/70 transition-colors"
+                  >
+                    {item}
+                  </button>
+                ))}
+                <a href="/Sugam_CV.pdf" download className="inline-flex justify-center pt-2">
+                  <Button variant="outline" className="w-full gap-2 rounded-full">
+                    <FileText className="h-4 w-4" />
+                    Download Resume
+                  </Button>
+                </a>
+              </nav>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </header>
   );

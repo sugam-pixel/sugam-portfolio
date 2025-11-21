@@ -348,13 +348,15 @@ export default function Playground() {
       </div>
 
       <Tabs defaultValue="sprint" className="max-w-4xl mx-auto">
-        <TabsList className="grid w-full grid-cols-5 overflow-x-auto">
-          <TabsTrigger value="sprint">Sprint</TabsTrigger>
-          <TabsTrigger value="risk">Risk</TabsTrigger>
-          <TabsTrigger value="raci">RACI</TabsTrigger>
-          <TabsTrigger value="matrix">Matrix</TabsTrigger>
-          <TabsTrigger value="triage">Triage</TabsTrigger>
-        </TabsList>
+        <div className="overflow-x-auto pb-2 -mx-4 px-4 md:mx-0 md:px-0">
+          <TabsList className="inline-flex w-auto min-w-full md:w-full md:grid md:grid-cols-5 justify-start md:justify-items-center">
+            <TabsTrigger value="sprint" className="flex-1 min-w-[100px]">Sprint</TabsTrigger>
+            <TabsTrigger value="risk" className="flex-1 min-w-[100px]">Risk</TabsTrigger>
+            <TabsTrigger value="raci" className="flex-1 min-w-[100px]">RACI</TabsTrigger>
+            <TabsTrigger value="matrix" className="flex-1 min-w-[100px]">Matrix</TabsTrigger>
+            <TabsTrigger value="triage" className="flex-1 min-w-[100px]">Triage</TabsTrigger>
+          </TabsList>
+        </div>
         
         <div className="mt-6">
           <TabsContent value="sprint">
