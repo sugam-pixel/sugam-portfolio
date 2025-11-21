@@ -3,16 +3,16 @@ import { Check } from "lucide-react";
 
 const skills = {
   "AI Program Delivery": [
-    "AHT Optimization", "Eval Ops Cycles", "Data Workflows", "Quality Frameworks", "Contributor Signals"
+    "AHT Optimization", "Eval Ops Cycles", "RLHF Workflows", "Quality Frameworks", "Contributor Signals", "Model Evaluation", "Data Pipeline Ops"
   ],
   "Robotics Execution": [
-    "HW/SW Integration", "Regression QA", "Release Governance", "Field Testing", "Safety Critical Ops"
+    "HW/SW Integration", "Regression QA", "Release Governance", "Field Testing", "Safety Critical Ops", "Fleet Management", "Sensor Calibration Cycles"
   ],
   "Program Leadership": [
-    "Multi-squad Orchestration", "Stakeholder Alignment", "Escalation Mgmt", "Sprint Governance", "Risk Gating"
+    "Multi-squad Orchestration", "Stakeholder Alignment", "Escalation Mgmt", "Sprint Governance", "Risk Gating", "OKRs & KPIs", "Vendor Management"
   ],
   "Tools & Tech": [
-    "Jira / Confluence", "ADO / Smartsheet", "Python (Data Analysis)", "Tableau / PowerBI", "PRD / SRS Writing"
+    "Jira / Confluence", "ADO / Smartsheet", "Python (Data Analysis)", "Tableau / PowerBI", "PRD / SRS Writing", "SQL (Basic)", "Linear"
   ]
 };
 
@@ -39,22 +39,23 @@ export default function Skills() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: idx * 0.1 }}
-            className="bg-card border rounded-xl p-6 hover:border-primary/50 transition-colors"
+            whileHover={{ y: -5, borderColor: "hsl(var(--primary))" }}
+            className="bg-card border rounded-xl p-6 transition-all duration-300 shadow-sm hover:shadow-md"
           >
             <h3 className="text-lg font-semibold mb-4 flex items-center gap-2">
               <span className="w-2 h-6 bg-primary/20 rounded-sm" />
               {category}
             </h3>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div className="flex flex-wrap gap-2">
               {items.map((skill, i) => (
                 <motion.div 
                   key={skill}
-                  className="flex items-center gap-2 text-sm text-muted-foreground"
-                  initial={{ opacity: 0, x: -10 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.2 + (i * 0.05) }}
+                  className="px-3 py-1.5 bg-muted/50 rounded-full text-sm text-muted-foreground border border-transparent hover:border-primary/20 hover:bg-primary/5 hover:text-primary transition-colors cursor-default"
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: 0.2 + (i * 0.03) }}
+                  whileHover={{ scale: 1.05 }}
                 >
-                  <Check className="w-3 h-3 text-primary" />
                   {skill}
                 </motion.div>
               ))}

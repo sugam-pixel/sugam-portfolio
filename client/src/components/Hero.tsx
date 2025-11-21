@@ -87,49 +87,82 @@ export default function Hero() {
         </motion.div>
 
         {/* Right Column */}
-        <div className="relative flex justify-center">
+        <div className="relative flex flex-col items-center justify-center">
           <motion.div
             initial={{ scale: 0.9, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            className="relative z-10"
+            className="relative z-10 mb-8"
           >
-            <div className="relative w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-background shadow-2xl">
+            <div className="relative w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-background shadow-2xl group">
               <img 
                 src="/assets/photo.png" 
                 alt="Sugam Sharma" 
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
               />
             </div>
             
             {/* Pulse Ring */}
             <motion.div
-              className="absolute inset-0 rounded-full border border-primary/20"
+              className="absolute inset-0 rounded-full border-2 border-primary/20"
               animate={{ scale: [1, 1.05, 1], opacity: [0.5, 0, 0.5] }}
               transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
             />
           </motion.div>
 
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3, duration: 0.6 }}
+            className="text-center relative z-30"
+          >
+            <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary/60 pb-2">
+              Sugam Sharma
+            </h2>
+          </motion.div>
+
+          {/* Funky Playground Link */}
+          <motion.a
+            href="#playground"
+            className="absolute -bottom-12 md:-bottom-4 right-0 md:-right-12 z-40 hidden md:flex items-center gap-2 bg-primary text-primary-foreground px-4 py-2 rounded-full text-sm font-bold shadow-lg cursor-pointer hover:bg-primary/90"
+            initial={{ y: 0, rotate: 5 }}
+            animate={{ y: [-5, 5, -5] }}
+            whileHover={{ scale: 1.1, rotate: 0 }}
+            transition={{ 
+              y: { duration: 2, repeat: Infinity, ease: "easeInOut" },
+              scale: { duration: 0.2 }
+            }}
+          >
+            <span>🎮 Try the PM Games!</span>
+          </motion.a>
+
           {/* Floating Elements */}
           <motion.div
-            className="absolute top-10 right-10 bg-card p-3 rounded-lg shadow-lg border border-border z-20 hidden md:block"
-            animate={{ y: [0, -10, 0] }}
+            className="absolute top-10 right-0 md:-right-4 bg-card p-3 rounded-lg shadow-lg border border-border z-20 hidden md:block"
+            animate={{ y: [0, -10, 0], rotate: [0, 2, 0] }}
             transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+            whileHover={{ scale: 1.1 }}
           >
             <div className="flex items-center gap-2 text-sm font-medium">
-              <div className="w-2 h-2 rounded-full bg-green-500" />
+              <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
               Status: On Track
             </div>
           </motion.div>
 
           <motion.div
-            className="absolute bottom-10 left-0 bg-card p-3 rounded-lg shadow-lg border border-border z-20 hidden md:block"
-            animate={{ y: [0, 10, 0] }}
+            className="absolute bottom-20 -left-8 bg-card p-3 rounded-lg shadow-lg border border-border z-20 hidden md:block"
+            animate={{ y: [0, 10, 0], rotate: [0, -2, 0] }}
             transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+            whileHover={{ scale: 1.1 }}
           >
             <div className="space-y-2 w-32">
               <div className="h-2 bg-muted rounded w-full overflow-hidden">
-                <div className="h-full bg-primary w-[75%]" />
+                <motion.div 
+                  className="h-full bg-primary" 
+                  initial={{ width: "0%" }}
+                  animate={{ width: "75%" }}
+                  transition={{ duration: 1.5, delay: 1 }}
+                />
               </div>
               <div className="text-[10px] text-muted-foreground flex justify-between">
                 <span>Sprint Progress</span>
