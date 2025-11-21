@@ -1,0 +1,165 @@
+Overview:
+Design a visually stunning, interactive portfolio website for Sugam Sharma, an AI Program Manager with over 8 years of experience managing robotics and AI programs across India and the US. The site must combine clean design, strong visual storytelling, subtle program management theming, and playful but informative micro-interactions to deliver a unique “PM-first” portfolio experience.
+
+⸻
+11:48
+Got it—here’s a single, copy-paste Replit AI generation prompt designed to produce a world-class PM portfolio (light theme with dark toggle, smooth motion, PM Easter eggs, interactive PMBOK tools, resume download, LinkedIn link, dense front page). I’ve included real links/placeholders and ready-made copy you can keep or tweak.
+⸻
+:rocket: PROMPT (paste into Replit AI)
+Build a production-grade, responsive portfolio website for:
+Name: Sugam Sharma
+Role: AI & Technology Program Manager (8+ years)
+Primary theme: Light (default) with Dark Mode toggle
+Aesthetic: Apple/Linear/Notion—minimal, premium, clean; high whitespace; subtle depth; buttery smooth animations (no neon, no heavy gradients).
+Persona: Calm, structured Program Manager who brings clarity, speed, and alignment to AI/Robotics/SaaS programs.
+Front page should be dense with meaningful info + WOW motion.
+⸻
+0) Links & Assets (use these)
+	•	Resume (PDF download button): /mnt/data/Sugam_CV.pdf
+	•	LinkedIn: https://www.linkedin.com/in/ersugamsharma
+	•	Photo: placeholder headshot (use a tasteful circular frame; allow easy replacement via /assets/photo.jpg)
+⸻
+1) Global Requirements
+	•	Tech: HTML + CSS + JS (framework-free or lightweight). Use GSAP for smooth scroll/reveal/parallax; IntersectionObserver for performance.
+	•	Dark Mode: Header toggle; persist choice in localStorage.
+	•	Performance: Ship minified assets, lazy-load images, <90 Lighthouse CLS, smooth 60fps animations.
+	•	Accessibility: Semantic landmarks, keyboard focus states, alt text, sufficient contrast for both themes.
+	•	Navigation: Sticky glass header with scroll-spy highlighting; smooth anchor scroll; top progress bar that looks like a project timeline completion bar.
+	•	PM Easter Eggs (subtle): faint grid that hints at Gantt lanes, tiny RAG dots near section titles, hover tooltips showing “Owner / Status / Sprint”, draggable/kanban-like motion on cards, checklist ticks on reveal.
+⸻
+2) Hero (fold)
+Goal: Immediate identity + trust + actions; elegant motion; quirky PM floating elements.
+Layout (two-column on desktop, stacked on mobile):
+	•	Left:
+	•	H1: “Building clarity, speed & alignment in AI and robotics programs.”
+	•	Subhead: “AI Program Manager • 8+ Years • Robotics • AI Ops • SaaS Delivery”
+	•	Cert badges (pills with tooltips): PMP®, CSM®, SAFe®, Lean Six Sigma GB
+	•	Impact stats (animated counters):
+	•	“Programs Shipped: 30+”
+	•	“Engineers Led: 30”
+	•	“On-Time Releases: 95%”
+	•	CTA buttons:
+	•	Primary: “Download Résumé” → /mnt/data/Sugam_CV.pdf
+	•	Secondary (outline): “LinkedIn” → external
+	•	Right:
+	•	Circular photo with soft pulse ring (GSAP yoyo tween).
+	•	Floating PM elements (subtle parallax layers): tiny kanban tickets, milestone dots, a faint timeline line, and a “Status: On Track” chip gently drifting.
+Interactions:
+	•	Staggered text reveal on load; counters animate; parallax drift for floating elements; CTA micro-hover (lift + underline slide).
+⸻
+3) “Who I Am”
+Concise bio with soft dividers; keep readable and warm.
+Copy:
+I’m an AI & Technology Program Manager with 8+ years across AI evaluation ops, robotics delivery, and multi-squad SaaS programs. I turn ambiguity into predictable pipelines—balancing speed with quality through disciplined systems, not heroics.
+Badges: Education (MS, SJSU) • Methods (Agile, Scrum, SAFe)
+Easter egg: small “Version 8.0” chip (represents 8+ years).
+⸻
+4) Experience Timeline (signature section)
+Horizontal “sprint board” timeline (scrollable on desktop, swipe/stack on mobile). Each role is a ticket card with a left drag-handle, status chip, and checklist bullets that tick when visible.
+Cards (sample copy—keep succinct):
+	•	Mercor — AI Program Manager (Jul 2025–Present)
+	•	AI evaluation ops for global clients (OpenAI-aligned)
+	•	AHT optimization frameworks; contributor quality signals
+	•	Cross-timezone cadence; throughput dashboards
+	•	Status: :large_green_circle: On Track • Sprint: Q1
+	•	Techolution — Program Manager (Aug 2024–Jun 2025)
+	•	2 CV streams, 30+ engineers; release governance
+	•	95% milestone adherence; zero P0 at go-live
+	•	Risk gating + regression playbooks
+	•	Status: :large_yellow_circle: Challenging • Sprint: FY24
+	•	Miso Robotics — Program Manager (Dec 2022–Apr 2024)
+	•	Robotics HW/SW integration cycles; predictability
+	•	Structured regression QA; dependency mapping
+	•	Zero missed release windows
+	•	Status: :large_green_circle: Completed • Sprint: Robotics v2.4
+	•	Earlier PM roles (2018–2021): OYO Life, OxfordCaps, Innovations Workspace (compact list).
+Motion/UI:
+	•	Scroll-snap to center each card; hover = lift + soft shadow; minor line linking cards like a Gantt axis; tooltip on hover: “Owner: Sugam • Priority: High”.
+⸻
+5) Skills Grid (interactive checklists)
+Four quadrants with tick-in animations:
+	•	AI Program Delivery: AHT optimization; evaluation cycles; data workflows; quality frameworks
+	•	Robotics Execution: HW/SW cycles; regression QA; release predictability
+	•	Program Leadership: Multi-squad orchestration; stakeholder alignment; escalation handling; sprint governance
+	•	Tools & Tech: Jira, Confluence, ADO; dashboards; Python (basic); PRD/SRS
+Hover micro-tooltips define terms (e.g., AHT, RAG, Regression).
+⸻
+6) Case Studies (expandable PRD tiles)
+Cards expand in-place to reveal PRD-style structure (animate height + content fade).
+A. AHT Reduction in AI Evaluation Ops (Mercor)
+	•	Objective: reduce variance; increase weekly throughput
+	•	Approach: contributor performance signals; proactive low-engagement flags; cadence design
+	•	Outcome/KPIs: ~32% AHT variance reduction; stable quality; higher predictability
+	•	Status: “Shipped” pill
+B. Robotics HW–SW Release Predictability (Miso)
+	•	Objective: cadence across HW/SW streams
+	•	Approach: unified board; dependency map; structured regression; stability checkpoints
+	•	Outcome: zero missed windows; earlier integration issue detection
+C. Two-Stream CV Delivery (Techolution)
+	•	Objective: deliver two CV streams with 30 engineers on schedule
+	•	Approach: clear DRIs; risk gating; weekly priority alignment; regression routing
+	•	Outcome: 95% milestone adherence; zero P0s at launch
+⸻
+7) PM Playground (interactive mini-apps)
+Lightweight, self-contained JS widgets (no backend), mobile-friendly fallbacks.
+Sprint Planning Game
+	•	Backlog on left, “Sprint 1 (capacity 20)” on right.
+	•	Drag tasks with story points; capacity bar fills; success toast when ~balanced.
+	•	Easter egg tooltips: “Priority: High”, “Blocked: No”, etc.
+Gantt Simulator
+	•	4 tasks with dependencies; draggable ends to change durations; dependent bars shift.
+	•	“Play” animates timeline; milestone diamonds pop in.
+RACI Explainer
+	•	Grid: Roles × Tasks; click cells to cycle R → A → C → I; legend explains each.
+	•	Preset example + “reset” button.
+Risk & Velocity
+	•	Risk list with RAG toggles; risk meter animates.
+	•	Velocity mini calc: enter team velocity + scope → show “Likely on track / at risk” with a tiny burnup chart.
+PMBOK Corner (Quiz + Resources)
+	•	5-Q MCQ quiz (Scope, Schedule, Cost, Quality, Risk).
+	•	Show score + mini explanations.
+	•	Two downloadable templates (blank Risk Register, RAID log).
+Animations: gentle; use GSAP for draggable easing; crisp UI (Linear-style cards).
+⸻
+8) PM Philosophy (quote carousel)
+Three rotating principles with tasteful motion (no flashy transitions):
+	•	“Clarity creates momentum.”
+	•	“Alignment reduces 80% of chaos.”
+	•	“Velocity is a byproduct of disciplined systems.”
+Tiny checkmark appears on hover (“Actioned”).
+⸻
+9) Contact / Footer
+	•	Clean contact block with email icon, LinkedIn button, and Download Résumé button (repeat).
+	•	Footer progress ticker mimics a release timeline advancing to 100% on page end.
+	•	Dark-mode toggle duplicated in footer.
+⸻
+10) Motion & Micro-interaction Spec (strict)
+	•	Use GSAP: section reveal (opacity + translateY 24–40px), staggered lists (60–90ms), Apple-like easing cubic-bezier(0.22,1,0.36,1).
+	•	Parallax layers in hero + subtle in timeline background.
+	•	Hover states: cards lift 2–4px; shadows soften; underlines animate left→right.
+	•	Keep everything subtle, tasteful, and consistent.
+⸻
+11) File/Code Structure (deliverables)
+/index.html
+/styles.css
+/app.js
+/assets/photo.jpg            (placeholder)
+ /assets/icons/*             (simple SVGs)
+ /assets/templates/risk-register.xlsx
+ /assets/templates/raid-log.xlsx
+	•	index.html: semantic sections with IDs: #hero, #about, #experience, #skills, #cases, #playground, #philosophy, #contact
+	•	styles.css: CSS variables for colors, shadows; light/dark themes; fluid typography
+	•	app.js: GSAP animations; scroll-spy; dark-mode toggle; mini-apps logic
+⸻
+12) Acceptance Criteria (must pass)
+	•	Light theme default, dark toggle working + persisted
+	•	Smooth 60fps reveals & parallax; no jank
+	•	Front page includes: identity, photo, certs, impact stats, CTAs, floating PM elements
+	•	Experience timeline is horizontal with snap and PM-style cards
+	•	PM Playground has at least 3 fully working tools (from the 5 listed)
+	•	Resume downloads from /mnt/data/Sugam_CV.pdf; LinkedIn opens in new tab
+	•	Mobile responsive and keyboard accessible
+	•	Overall visual polish consistent with Apple/Linear/Notion vibe
+⸻
+Build it as if this is a product site for a senior PM. Prioritize clarity, polish, and delightful motion—subtle PM easter eggs everywhere.
+⸻
