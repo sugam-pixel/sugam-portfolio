@@ -91,15 +91,15 @@ export default function AskSugam() {
           initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
-          className="bg-primary/5 rounded-3xl p-12 relative overflow-hidden"
+          className="bg-primary/5 rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-12 relative overflow-hidden"
         >
-          <div className="absolute top-0 right-0 p-12 opacity-10">
-            <MessageCircle className="w-64 h-64 text-primary" />
+          <div className="absolute top-0 right-0 p-6 sm:p-12 opacity-10">
+            <MessageCircle className="w-32 sm:w-48 md:w-64 h-32 sm:h-48 md:h-64 text-primary" />
           </div>
           
-          <div className="relative z-10 max-w-2xl mx-auto space-y-6">
-            <h2 className="text-3xl md:text-4xl font-bold">Have a question about my approach?</h2>
-            <p className="text-muted-foreground text-lg">
+          <div className="relative z-10 max-w-2xl mx-auto space-y-4 sm:space-y-6">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold">Have a question about my approach?</h2>
+            <p className="text-muted-foreground text-sm sm:text-base md:text-lg">
               Explore how I handle conflict, scope creep, risk, and delivery in high-stakes environments.
             </p>
             
@@ -129,41 +129,41 @@ export default function AskSugam() {
               initial={{ opacity: 0, scale: 0.9, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.9, y: 20 }}
-              className="w-full max-w-4xl h-[85vh] bg-card border shadow-2xl rounded-2xl overflow-hidden flex flex-col"
+              className="w-full max-w-4xl h-[90vh] sm:h-[85vh] bg-card border shadow-2xl rounded-xl sm:rounded-2xl overflow-hidden flex flex-col mx-2"
               onClick={e => e.stopPropagation()}
             >
               {/* Header */}
-              <div className="p-6 border-b flex items-center justify-between bg-muted/30">
-                <div className="flex items-center gap-3">
-                  <div className="bg-primary/10 p-2 rounded-lg">
-                    <MessageCircle className="w-6 h-6 text-primary" />
+              <div className="p-3 sm:p-4 md:p-6 border-b flex items-center justify-between bg-muted/30">
+                <div className="flex items-center gap-2 sm:gap-3">
+                  <div className="bg-primary/10 p-1.5 sm:p-2 rounded-lg">
+                    <MessageCircle className="w-5 h-5 sm:w-6 sm:h-6 text-primary" />
                   </div>
                   <div>
-                    <h3 className="text-xl font-bold">PM Knowledge Base</h3>
-                    <p className="text-sm text-muted-foreground">Sugam's Approach to Program Management</p>
+                    <h3 className="text-base sm:text-lg md:text-xl font-bold">PM Knowledge Base</h3>
+                    <p className="text-xs sm:text-sm text-muted-foreground hidden sm:block">Sugam's Approach to Program Management</p>
                   </div>
                 </div>
-                <Button variant="ghost" size="icon" onClick={() => setIsOpen(false)} className="rounded-full">
-                  <X className="w-5 h-5" />
+                <Button variant="ghost" size="icon" onClick={() => setIsOpen(false)} className="rounded-full h-8 w-8 sm:h-10 sm:w-10">
+                  <X className="w-4 h-4 sm:w-5 sm:h-5" />
                 </Button>
               </div>
 
               {/* Search & Filters */}
-              <div className="p-6 border-b bg-card space-y-4">
+              <div className="p-3 sm:p-4 md:p-6 border-b bg-card space-y-3 sm:space-y-4">
                 <div className="relative">
                   <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
                   <Input 
-                    placeholder="Search for 'conflict', 'risk', 'scope'..." 
-                    className="pl-9 h-12 text-lg"
+                    placeholder="Search 'conflict', 'risk'..." 
+                    className="pl-9 h-10 sm:h-12 text-sm sm:text-base md:text-lg"
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                     autoFocus
                   />
                 </div>
-                <div className="flex gap-2 overflow-x-auto pb-2 hide-scrollbar">
+                <div className="flex gap-1.5 sm:gap-2 overflow-x-auto pb-2 hide-scrollbar">
                   <Badge 
                     variant={selectedTag === null ? "default" : "outline"}
-                    className="cursor-pointer hover:bg-primary/90 transition-colors whitespace-nowrap"
+                    className="cursor-pointer hover:bg-primary/90 transition-colors whitespace-nowrap text-[10px] sm:text-xs px-2 py-0.5"
                     onClick={() => setSelectedTag(null)}
                   >
                     All
@@ -172,7 +172,7 @@ export default function AskSugam() {
                     <Badge 
                       key={tag}
                       variant={selectedTag === tag ? "default" : "outline"}
-                      className="cursor-pointer hover:bg-primary/90 transition-colors whitespace-nowrap"
+                      className="cursor-pointer hover:bg-primary/90 transition-colors whitespace-nowrap text-[10px] sm:text-xs px-2 py-0.5"
                       onClick={() => setSelectedTag(tag === selectedTag ? null : tag)}
                     >
                       {tag}
@@ -182,8 +182,8 @@ export default function AskSugam() {
               </div>
 
               {/* Content Area */}
-              <ScrollArea className="flex-1 p-6 bg-muted/5">
-                <div className="grid md:grid-cols-2 gap-4">
+              <ScrollArea className="flex-1 p-3 sm:p-4 md:p-6 bg-muted/5">
+                <div className="grid gap-3 sm:gap-4 md:grid-cols-2">
                   {filteredFaqs.map((faq, index) => (
                     <motion.div
                       key={index}
@@ -192,21 +192,21 @@ export default function AskSugam() {
                       transition={{ delay: index * 0.05 }}
                     >
                       <Card className="h-full hover:shadow-md transition-shadow duration-200 border-primary/10 group">
-                        <div className="p-6 space-y-4">
-                          <div className="flex items-start justify-between gap-4">
-                            <h4 className="font-semibold text-lg leading-tight group-hover:text-primary transition-colors">
+                        <div className="p-4 sm:p-5 md:p-6 space-y-3 sm:space-y-4">
+                          <div className="flex items-start justify-between gap-3 sm:gap-4">
+                            <h4 className="font-semibold text-sm sm:text-base md:text-lg leading-tight group-hover:text-primary transition-colors">
                               {faq.question}
                             </h4>
-                            <div className="bg-primary/5 p-2 rounded-lg shrink-0">
-                              <faq.icon className="w-5 h-5 text-primary/70" />
+                            <div className="bg-primary/5 p-1.5 sm:p-2 rounded-lg shrink-0">
+                              <faq.icon className="w-4 h-4 sm:w-5 sm:h-5 text-primary/70" />
                             </div>
                           </div>
-                          <p className="text-muted-foreground text-sm leading-relaxed">
+                          <p className="text-muted-foreground text-xs sm:text-sm leading-relaxed">
                             {faq.answer}
                           </p>
-                          <div className="pt-2 flex flex-wrap gap-2">
+                          <div className="pt-1 sm:pt-2 flex flex-wrap gap-1.5 sm:gap-2">
                             {faq.tags.map(tag => (
-                              <span key={tag} className="text-[10px] uppercase tracking-wider font-bold text-muted-foreground/60 bg-muted px-2 py-1 rounded">
+                              <span key={tag} className="text-[8px] sm:text-[10px] uppercase tracking-wider font-bold text-muted-foreground/60 bg-muted px-1.5 sm:px-2 py-0.5 sm:py-1 rounded">
                                 {tag}
                               </span>
                             ))}
@@ -225,8 +225,9 @@ export default function AskSugam() {
                   </div>
                 )}
 
-                <div className="mt-12 text-center text-xs text-muted-foreground border-t pt-8 pb-4">
-                  Execution aligned with PMBOK®, Agile Practice Guide, and PMI Program & Portfolio Management standards — applied pragmatically, not academically.
+                <div className="mt-8 sm:mt-12 text-center text-[10px] sm:text-xs text-muted-foreground border-t pt-6 sm:pt-8 pb-4">
+                  <span className="hidden sm:inline">Execution aligned with PMBOK®, Agile Practice Guide, and PMI Program & Portfolio Management standards — applied pragmatically, not academically.</span>
+                  <span className="sm:hidden">Aligned with PMBOK® & Agile standards.</span>
                 </div>
               </ScrollArea>
             </motion.div>

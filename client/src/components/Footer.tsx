@@ -13,23 +13,23 @@ export default function Footer() {
         style={{ width }} 
       />
       
-      <div className="container mx-auto px-4 py-16">
-        <div className="grid md:grid-cols-2 gap-12 items-center">
-          <div>
-            <h2 className="text-3xl font-bold mb-4">Let's ship something great.</h2>
-            <p className="text-muted-foreground mb-8 max-w-md">
+      <div className="container mx-auto px-4 py-10 sm:py-16">
+        <div className="grid gap-8 sm:gap-12 md:grid-cols-2 items-center">
+          <div className="text-center md:text-left">
+            <h2 className="text-2xl sm:text-3xl font-bold mb-3 sm:mb-4">Let's ship something great.</h2>
+            <p className="text-sm sm:text-base text-muted-foreground mb-6 sm:mb-8 max-w-md mx-auto md:mx-0">
               Open for AI Program Management roles. Let's discuss how I can bring clarity and speed to your engineering teams.
             </p>
             
-            <div className="flex flex-wrap gap-4">
+            <div className="flex flex-wrap justify-center md:justify-start gap-3 sm:gap-4">
               <a href="mailto:sugam.sharma041@gmail.com">
-                <Button size="lg" className="rounded-full gap-2">
+                <Button size="default" className="rounded-full gap-2 text-sm sm:text-base">
                   <Mail className="h-4 w-4" />
                   Get in Touch
                 </Button>
               </a>
               <a href="https://www.linkedin.com/in/ersugamsharma" target="_blank" rel="noreferrer">
-                <Button variant="outline" size="lg" className="rounded-full gap-2">
+                <Button variant="outline" size="default" className="rounded-full gap-2 text-sm sm:text-base">
                   <Linkedin className="h-4 w-4" />
                   LinkedIn
                 </Button>
@@ -37,16 +37,16 @@ export default function Footer() {
             </div>
           </div>
 
-          <div className="md:text-right text-muted-foreground text-sm space-y-4">
+          <div className="text-center md:text-right text-muted-foreground text-xs sm:text-sm space-y-3 sm:space-y-4">
             <div>
               <div className="font-medium text-foreground mb-1">Sugam Sharma</div>
               <div>Ghaziabad, India</div>
             </div>
             <div>
               <div className="font-medium text-foreground mb-1">Email</div>
-              <div>sugam.sharma041@gmail.com</div>
+              <div className="break-all">sugam.sharma041@gmail.com</div>
             </div>
-            <div className="pt-8 text-xs opacity-50">
+            <div className="pt-4 sm:pt-8 text-[10px] sm:text-xs opacity-50">
               &copy; {new Date().getFullYear()} Sugam Sharma. All rights reserved.
             </div>
           </div>

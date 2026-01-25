@@ -105,22 +105,23 @@ export default function Experience() {
 
   return (
     <section id="experience" className="py-24 bg-muted/30" ref={containerRef}>
-      <div className="container mx-auto px-4 mb-12">
+      <div className="container mx-auto px-4 mb-8 sm:mb-12">
         <motion.h2 
-          className="text-3xl font-bold mb-4"
+          className="text-2xl sm:text-3xl font-bold mb-3 sm:mb-4"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
         >
           Experience Timeline
         </motion.h2>
-        <p className="text-muted-foreground max-w-2xl">
-          Horizontal sprint board of my professional journey. Hover over cards to see detailed responsibilities.
+        <p className="text-sm sm:text-base text-muted-foreground max-w-2xl">
+          <span className="hidden sm:inline">Horizontal sprint board of my professional journey. Hover over cards to see detailed responsibilities.</span>
+          <span className="sm:hidden">Swipe to explore my journey. Tap cards for details.</span>
         </p>
       </div>
 
-      <div className="overflow-x-auto hide-scrollbar px-4 pb-12">
-        <div className="flex gap-6 w-max mx-auto md:mx-0 min-w-full md:px-24">
+      <div className="overflow-x-auto hide-scrollbar px-4 pb-8 sm:pb-12">
+        <div className="flex gap-4 sm:gap-6 w-max mx-auto md:mx-0 min-w-full md:px-24">
           {experiences.map((exp, index) => (
             <motion.div
               key={index}
@@ -128,7 +129,7 @@ export default function Experience() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
-              className="w-[300px] md:w-[350px] group/card perspective-1000"
+              className="w-[260px] sm:w-[300px] md:w-[350px] group/card perspective-1000"
             >
               <div className="relative h-full transition-all duration-500 ease-out transform-style-3d group-hover/card:scale-105">
                 <Card className="h-full relative overflow-hidden border-t-4 border-t-primary/10 hover:border-t-primary transition-colors bg-card z-10">

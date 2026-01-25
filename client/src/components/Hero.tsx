@@ -17,7 +17,7 @@ export default function Hero() {
         >
           <div className="space-y-4">
             <motion.h1 
-              className="text-4xl md:text-6xl font-bold tracking-tight leading-[1.1]"
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.1]"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1, duration: 0.6 }}
@@ -25,7 +25,7 @@ export default function Hero() {
               Building clarity, speed & alignment in AI and robotics programs.
             </motion.h1>
             <motion.p 
-              className="text-xl text-muted-foreground"
+              className="text-base sm:text-lg md:text-xl text-muted-foreground"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2, duration: 0.6 }}
@@ -48,7 +48,7 @@ export default function Hero() {
           </motion.div>
 
           <motion.div 
-            className="grid grid-cols-3 gap-4 py-4 border-y border-border/40"
+            className="grid grid-cols-3 gap-2 sm:gap-4 py-4 border-y border-border/40"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.4, duration: 0.6 }}
@@ -59,8 +59,8 @@ export default function Hero() {
               { label: "On-Time Releases", value: "95%" }
             ].map((stat) => (
               <div key={stat.label} className="text-center md:text-left">
-                <div className="text-2xl md:text-3xl font-bold">{stat.value}</div>
-                <div className="text-xs text-muted-foreground uppercase tracking-wider mt-1">{stat.label}</div>
+                <div className="text-xl sm:text-2xl md:text-3xl font-bold">{stat.value}</div>
+                <div className="text-[10px] sm:text-xs text-muted-foreground uppercase tracking-wider mt-1 leading-tight">{stat.label}</div>
               </div>
             ))}
           </motion.div>
@@ -106,7 +106,7 @@ export default function Hero() {
             transition={{ duration: 0.8, ease: "easeOut" }}
             className="relative z-10 mb-8"
           >
-            <div className="relative w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-background shadow-2xl group">
+            <div className="relative w-48 h-48 sm:w-64 sm:h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-background shadow-2xl group">
               <img 
                 src="/assets/photo.png" 
                 alt="Sugam Sharma" 
@@ -128,7 +128,7 @@ export default function Hero() {
             transition={{ delay: 0.3, duration: 0.6 }}
             className="text-center relative z-30"
           >
-            <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary/60 pb-2">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary/60 pb-2">
               Sugam Sharma
             </h2>
           </motion.div>

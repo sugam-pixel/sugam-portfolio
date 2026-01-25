@@ -50,11 +50,11 @@ function SprintGame() {
   };
 
   return (
-    <div className="p-4 space-y-6">
-      <div className="flex justify-between items-end">
-        <div>
+    <div className="p-2 sm:p-4 space-y-6">
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end gap-4">
+        <div className="w-full sm:w-auto">
           <h4 className="text-sm font-medium text-muted-foreground mb-1">Team Capacity: {capacity} SP</h4>
-          <div className="w-64 h-3 bg-muted rounded-full overflow-hidden">
+          <div className="w-full sm:w-64 h-3 bg-muted rounded-full overflow-hidden">
             <motion.div 
               className={`h-full ${sprintLoad > capacity ? "bg-red-500" : "bg-primary"}`}
               initial={{ width: 0 }}
@@ -62,7 +62,7 @@ function SprintGame() {
             />
           </div>
         </div>
-        <Button onClick={startSprint} disabled={sprintLoad === 0} className="transition-transform active:scale-95">Start Sprint</Button>
+        <Button onClick={startSprint} disabled={sprintLoad === 0} className="w-full sm:w-auto transition-transform active:scale-95">Start Sprint</Button>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -118,9 +118,9 @@ function RiskVelocity() {
   const sprintsNeeded = Math.ceil(scope / velocity);
   
   return (
-    <div className="p-4 space-y-8">
+    <div className="p-2 sm:p-4 space-y-6 sm:space-y-8">
       <div className="space-y-4">
-        <div className="flex justify-between">
+        <div className="flex justify-between text-sm sm:text-base">
           <Label>Team Velocity (pts/sprint)</Label>
           <span className="font-mono font-bold">{velocity}</span>
         </div>
@@ -128,7 +128,7 @@ function RiskVelocity() {
       </div>
       
       <div className="space-y-4">
-        <div className="flex justify-between">
+        <div className="flex justify-between text-sm sm:text-base">
           <Label>Project Scope (points)</Label>
           <span className="font-mono font-bold">{scope}</span>
         </div>
@@ -136,14 +136,14 @@ function RiskVelocity() {
       </div>
 
       <motion.div 
-        className="bg-muted/30 p-4 rounded-lg border text-center"
+        className="bg-muted/30 p-3 sm:p-4 rounded-lg border text-center"
         key={sprintsNeeded}
         initial={{ scale: 0.9, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
       >
-        <div className="text-sm text-muted-foreground mb-1">Estimated Delivery</div>
-        <div className="text-3xl font-bold text-primary">{sprintsNeeded} Sprints</div>
-        <div className="text-xs text-muted-foreground mt-2">
+        <div className="text-xs sm:text-sm text-muted-foreground mb-1">Estimated Delivery</div>
+        <div className="text-2xl sm:text-3xl font-bold text-primary">{sprintsNeeded} Sprints</div>
+        <div className="text-[10px] sm:text-xs text-muted-foreground mt-2">
           {sprintsNeeded > 5 ? "⚠️ High Risk Timeline" : "✅ Manageable Timeline"}
         </div>
       </motion.div>
@@ -153,7 +153,7 @@ function RiskVelocity() {
 
 // --- RACI Explainer ---
 function RACIGame() {
-  const roles = ["PM", "Dev", "Designer", "Stakeholder"];
+  const roles = ["PM", "Dev", "Design", "Exec"];
   const tasks = ["Define Specs", "Write Code", "User Testing", "Sign-off"];
   const [grid, setGrid] = useState<Record<string, string>>({});
 
@@ -167,40 +167,43 @@ function RACIGame() {
   };
 
   return (
-    <div className="p-4">
-      <div className="grid grid-cols-5 gap-2 mb-4">
-        <div className="font-bold text-xs uppercase text-muted-foreground">Task \ Role</div>
-        {roles.map(r => <div key={r} className="font-bold text-xs uppercase text-center">{r}</div>)}
-        
-        {tasks.map(t => (
-          <>
-            <div key={t} className="text-sm font-medium flex items-center">{t}</div>
-            {roles.map(r => {
-              const val = grid[`${r}-${t}`];
-              return (
-                <motion.div 
-                  key={`${r}-${t}`} 
-                  onClick={() => toggleCell(r, t)}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className={`
-                    h-10 rounded border flex items-center justify-center cursor-pointer font-bold transition-colors
-                    ${val === 'R' ? 'bg-red-100 text-red-700 dark:bg-red-900/20' : ''}
-                    ${val === 'A' ? 'bg-yellow-100 text-yellow-700 dark:bg-yellow-900/20' : ''}
-                    ${val === 'C' ? 'bg-blue-100 text-blue-700 dark:bg-blue-900/20' : ''}
-                    ${val === 'I' ? 'bg-green-100 text-green-700 dark:bg-green-900/20' : ''}
-                    ${!val ? 'hover:bg-muted' : ''}
-                  `}
-                >
-                  {val}
-                </motion.div>
-              );
-            })}
-          </>
-        ))}
+    <div className="p-2 sm:p-4">
+      <div className="overflow-x-auto -mx-2 px-2">
+        <div className="grid grid-cols-5 gap-1 sm:gap-2 mb-4 min-w-[300px]">
+          <div className="font-bold text-[10px] sm:text-xs uppercase text-muted-foreground">Task</div>
+          {roles.map(r => <div key={r} className="font-bold text-[10px] sm:text-xs uppercase text-center">{r}</div>)}
+          
+          {tasks.map(t => (
+            <>
+              <div key={t} className="text-xs sm:text-sm font-medium flex items-center leading-tight">{t}</div>
+              {roles.map(r => {
+                const val = grid[`${r}-${t}`];
+                return (
+                  <motion.div 
+                    key={`${r}-${t}`} 
+                    onClick={() => toggleCell(r, t)}
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    className={`
+                      h-8 sm:h-10 rounded border flex items-center justify-center cursor-pointer font-bold transition-colors text-sm
+                      ${val === 'R' ? 'bg-red-100 text-red-700 dark:bg-red-900/20' : ''}
+                      ${val === 'A' ? 'bg-yellow-100 text-yellow-700 dark:bg-yellow-900/20' : ''}
+                      ${val === 'C' ? 'bg-blue-100 text-blue-700 dark:bg-blue-900/20' : ''}
+                      ${val === 'I' ? 'bg-green-100 text-green-700 dark:bg-green-900/20' : ''}
+                      ${!val ? 'hover:bg-muted' : ''}
+                    `}
+                  >
+                    {val}
+                  </motion.div>
+                );
+              })}
+            </>
+          ))}
+        </div>
       </div>
-      <div className="flex gap-4 text-xs text-muted-foreground justify-center">
-        <span>Click cells to cycle: Responsible, Accountable, Consulted, Informed</span>
+      <div className="text-[10px] sm:text-xs text-muted-foreground text-center">
+        <span className="hidden sm:inline">Click cells to cycle: Responsible, Accountable, Consulted, Informed</span>
+        <span className="sm:hidden">Tap cells: R, A, C, I</span>
       </div>
     </div>
   );
@@ -216,34 +219,34 @@ function PrioritizationMatrix() {
   ]);
 
   return (
-    <div className="p-4 h-[400px] relative select-none">
+    <div className="p-2 sm:p-4 h-[300px] sm:h-[400px] relative select-none">
       <div className="absolute inset-0 grid grid-cols-2 grid-rows-2 pointer-events-none">
-        <div className="border-r border-b border-muted-foreground/20 bg-green-500/5 p-2 text-xs font-bold text-muted-foreground">Quick Wins</div>
-        <div className="border-b border-muted-foreground/20 bg-blue-500/5 p-2 text-xs font-bold text-muted-foreground">Major Projects</div>
-        <div className="border-r border-muted-foreground/20 bg-yellow-500/5 p-2 text-xs font-bold text-muted-foreground">Fill Ins</div>
-        <div className="bg-red-500/5 p-2 text-xs font-bold text-muted-foreground">Thankless Tasks</div>
+        <div className="border-r border-b border-muted-foreground/20 bg-green-500/5 p-1 sm:p-2 text-[10px] sm:text-xs font-bold text-muted-foreground">Quick Wins</div>
+        <div className="border-b border-muted-foreground/20 bg-blue-500/5 p-1 sm:p-2 text-[10px] sm:text-xs font-bold text-muted-foreground">Major Projects</div>
+        <div className="border-r border-muted-foreground/20 bg-yellow-500/5 p-1 sm:p-2 text-[10px] sm:text-xs font-bold text-muted-foreground">Fill Ins</div>
+        <div className="bg-red-500/5 p-1 sm:p-2 text-[10px] sm:text-xs font-bold text-muted-foreground">Thankless</div>
       </div>
       
-      <div className="absolute left-[-20px] top-1/2 -rotate-90 text-xs font-bold text-muted-foreground">Impact ⬆️</div>
-      <div className="absolute bottom-[-20px] left-1/2 text-xs font-bold text-muted-foreground">Effort ➡️</div>
+      <div className="absolute left-0 sm:left-[-20px] top-1/2 -rotate-90 text-[10px] sm:text-xs font-bold text-muted-foreground origin-center">Impact</div>
+      <div className="absolute bottom-0 sm:bottom-[-20px] left-1/2 -translate-x-1/2 text-[10px] sm:text-xs font-bold text-muted-foreground">Effort</div>
 
-      <div className="relative w-full h-full">
-        {items.map((item) => (
+      <div className="relative w-full h-full overflow-hidden">
+        {items.map((item, idx) => (
           <motion.div
             key={item.id}
             drag
-            dragConstraints={{ left: 0, right: 300, top: 0, bottom: 300 }}
+            dragConstraints={{ left: 0, right: 200, top: 0, bottom: 200 }}
             whileHover={{ scale: 1.1, cursor: "grab" }}
             whileDrag={{ scale: 1.2, cursor: "grabbing" }}
-            className="absolute bg-card border shadow-md rounded-lg px-3 py-1.5 text-sm font-medium z-10"
-            style={{ top: "40%", left: "40%" }} // Start center-ish
+            className="absolute bg-card border shadow-md rounded-lg px-2 sm:px-3 py-1 sm:py-1.5 text-xs sm:text-sm font-medium z-10 touch-none"
+            style={{ top: `${30 + idx * 12}%`, left: `${30 + idx * 8}%` }}
           >
             {item.title}
           </motion.div>
         ))}
       </div>
-      <div className="absolute bottom-2 right-2 text-[10px] text-muted-foreground">
-        Drag features to prioritize
+      <div className="absolute bottom-1 sm:bottom-2 right-1 sm:right-2 text-[8px] sm:text-[10px] text-muted-foreground">
+        Drag to prioritize
       </div>
     </div>
   );
@@ -266,7 +269,6 @@ function BugTriage() {
     const currentBug = bugs[currentBugIndex];
     let isCorrect = false;
 
-    // Simplified logic for the game
     if (action === "fix" && (currentBug.severity === "Critical" || currentBug.severity === "High")) isCorrect = true;
     if (action === "defer" && currentBug.severity === "Cosmetic") isCorrect = true;
     if (action === "backlog" && currentBug.severity === "Low") isCorrect = true;
@@ -293,38 +295,38 @@ function BugTriage() {
   const currentBug = bugs[currentBugIndex];
 
   return (
-    <div className="p-8 flex flex-col items-center justify-center space-y-6">
+    <div className="p-4 sm:p-8 flex flex-col items-center justify-center space-y-4 sm:space-y-6">
       <div className="text-sm font-medium text-muted-foreground">Bug {currentBugIndex + 1} of {bugs.length}</div>
       
       <motion.div
         key={currentBug.id}
         initial={{ scale: 0.9, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
-        className="bg-card border shadow-lg rounded-xl p-6 w-full max-w-xs text-center space-y-4"
+        className="bg-card border shadow-lg rounded-xl p-4 sm:p-6 w-full max-w-xs text-center space-y-3 sm:space-y-4"
       >
-        <div className="bg-red-100 dark:bg-red-900/30 text-red-600 dark:text-red-400 w-12 h-12 rounded-full flex items-center justify-center mx-auto">
-          <Bug className="w-6 h-6" />
+        <div className="bg-red-100 dark:bg-red-900/30 text-red-600 dark:text-red-400 w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center mx-auto">
+          <Bug className="w-5 h-5 sm:w-6 sm:h-6" />
         </div>
         <div>
-          <div className="text-xs uppercase font-bold text-muted-foreground mb-1">{currentBug.severity} Severity</div>
-          <h4 className="font-bold text-lg">{currentBug.title}</h4>
+          <div className="text-[10px] sm:text-xs uppercase font-bold text-muted-foreground mb-1">{currentBug.severity} Severity</div>
+          <h4 className="font-bold text-base sm:text-lg">{currentBug.title}</h4>
         </div>
       </motion.div>
 
       {feedback && (
-        <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="font-bold text-lg">
+        <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="font-bold text-base sm:text-lg">
           {feedback}
         </motion.div>
       )}
 
-      <div className="flex gap-4">
-        <Button variant="outline" className="border-red-200 hover:bg-red-50 hover:text-red-600" onClick={() => handleTriage("fix")}>
+      <div className="flex flex-wrap justify-center gap-2 sm:gap-4">
+        <Button variant="outline" size="sm" className="border-red-200 hover:bg-red-50 hover:text-red-600 text-xs sm:text-sm" onClick={() => handleTriage("fix")}>
           Fix Now
         </Button>
-        <Button variant="outline" className="border-yellow-200 hover:bg-yellow-50 hover:text-yellow-600" onClick={() => handleTriage("defer")}>
+        <Button variant="outline" size="sm" className="border-yellow-200 hover:bg-yellow-50 hover:text-yellow-600 text-xs sm:text-sm" onClick={() => handleTriage("defer")}>
           Defer
         </Button>
-        <Button variant="outline" className="border-blue-200 hover:bg-blue-50 hover:text-blue-600" onClick={() => handleTriage("backlog")}>
+        <Button variant="outline" size="sm" className="border-blue-200 hover:bg-blue-50 hover:text-blue-600 text-xs sm:text-sm" onClick={() => handleTriage("backlog")}>
           Backlog
         </Button>
       </div>
@@ -335,16 +337,16 @@ function BugTriage() {
 export default function Playground() {
   return (
     <section id="playground" className="py-24 container mx-auto px-4">
-      <div className="mb-12">
+      <div className="mb-8 sm:mb-12">
         <motion.h2 
-          className="text-3xl font-bold mb-4"
+          className="text-2xl sm:text-3xl font-bold mb-3 sm:mb-4"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
         >
           PM Playground
         </motion.h2>
-        <p className="text-muted-foreground">Interactive tools to demonstrate program mechanics.</p>
+        <p className="text-sm sm:text-base text-muted-foreground">Interactive tools to demonstrate program mechanics.</p>
       </div>
 
       <Tabs defaultValue="sprint" className="max-w-4xl mx-auto">
