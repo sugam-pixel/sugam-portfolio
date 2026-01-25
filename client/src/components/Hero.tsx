@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { FileText, Linkedin, ArrowRight } from "lucide-react";
+import { FileText, Linkedin, ArrowRight, Video } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 
@@ -66,7 +66,7 @@ export default function Hero() {
           </motion.div>
 
           <motion.div 
-            className="flex flex-col sm:flex-row gap-4"
+            className="flex flex-wrap items-center gap-4"
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5, duration: 0.6 }}
@@ -82,6 +82,18 @@ export default function Hero() {
                 <Linkedin className="h-4 w-4" />
                 LinkedIn
               </Button>
+            </a>
+            
+            {/* 3D Topmate Button */}
+            <a href="https://topmate.io/sugam_sharma_pmp_csm?utm_source=linkedin&utm_medium=product&utm_campaign=ss" target="_blank" rel="noreferrer" className="w-full sm:w-auto">
+              <motion.button
+                className="w-full sm:w-auto relative group bg-gradient-to-r from-orange-400 to-orange-600 text-white font-bold rounded-full px-6 py-2.5 shadow-[0_4px_0_rgb(194,65,12)] active:shadow-[0_0px_0_rgb(194,65,12)] active:translate-y-[4px] transition-all flex items-center justify-center gap-2 overflow-hidden"
+                whileHover={{ scale: 1.05 }}
+              >
+                <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
+                <Video className="h-4 w-4" />
+                <span className="relative z-10">Connect on Topmate</span>
+              </motion.button>
             </a>
           </motion.div>
         </motion.div>

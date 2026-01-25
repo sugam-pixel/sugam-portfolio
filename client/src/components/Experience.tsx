@@ -11,19 +11,26 @@ const experiences = [
     period: "Jul 2025 – Present",
     status: "on-track",
     sprint: "Q1",
-    description: "Leading AI evaluation ops for global clients (OpenAI-aligned).",
+    description: "Leading multi-track AI evaluation & research programs.",
     items: [
-      "AHT optimization frameworks",
-      "Contributor quality signals",
-      "Cross-timezone cadence",
-      "Throughput dashboards"
+      "Leading delivery for Top AI labs",
+      "Owning end-to-end execution & metrics",
+      "Coordinating parallel workstreams",
+      "Defining execution workflows"
+    ],
+    details: [
+      "Leading delivery of multi-track AI evaluation and research programs for global clients",
+      "Owning end-to-end execution including timelines, quality checks, and delivery metrics",
+      "Coordinating researchers, expert reviewers, and internal stakeholders across parallel workstreams",
+      "Defining execution workflows and review processes to ensure consistency and quality",
+      "Acting as primary delivery owner for client communication and program reporting"
     ]
   },
   {
     company: "Techolution",
     role: "Program Manager",
     period: "Aug 2024 – Jun 2025",
-    status: "challenging",
+    status: "completed",
     sprint: "FY24",
     description: "Managed 2 CV streams, 30+ engineers & release governance.",
     items: [
@@ -31,6 +38,12 @@ const experiences = [
       "Zero P0 at go-live",
       "Risk gating protocols",
       "Regression playbooks"
+    ],
+    details: [
+      "Managed 2 CV streams with 30+ engineers",
+      "Achieved 95% milestone adherence",
+      "Ensured zero P0 defects at go-live",
+      "Implemented risk gating protocols and regression playbooks"
     ]
   },
   {
@@ -45,6 +58,13 @@ const experiences = [
       "Dependency mapping",
       "Zero missed release windows",
       "HW/SW Integration"
+    ],
+    details: [
+      "Orchestrated Robotics HW/SW integration cycles",
+      "Implemented structured regression QA processes",
+      "Managed dependency mapping across teams",
+      "Achieved zero missed release windows",
+      "Ensured predictability in delivery"
     ]
   },
   {
@@ -59,6 +79,12 @@ const experiences = [
       "Resource allocation",
       "Process optimization",
       "Stakeholder management"
+    ],
+    details: [
+      "Managed vendor relationships and contracts",
+      "Optimized resource allocation across projects",
+      "Streamlined operational processes",
+      "Handled stakeholder management and reporting"
     ]
   }
 ];
@@ -89,7 +115,7 @@ export default function Experience() {
           Experience Timeline
         </motion.h2>
         <p className="text-muted-foreground max-w-2xl">
-          Horizontal sprint board of my professional journey. Scroll to explore each role as a program increment.
+          Horizontal sprint board of my professional journey. Hover over cards to see detailed responsibilities.
         </p>
       </div>
 
@@ -102,41 +128,62 @@ export default function Experience() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
-              className="w-[300px] md:w-[350px]"
+              className="w-[300px] md:w-[350px] group/card perspective-1000"
             >
-              <Card className="h-full hover:shadow-lg transition-shadow duration-300 relative overflow-hidden group border-t-4 border-t-primary/10 hover:border-t-primary">
-                {/* Drag Handle Visual */}
-                <div className="absolute left-0 top-0 bottom-0 w-1 bg-border group-hover:bg-primary/20 transition-colors" />
-                
-                <CardHeader className="pb-3 pl-6">
-                  <div className="flex justify-between items-start mb-2">
-                    <Badge variant="outline" className="bg-background flex gap-1 items-center text-xs font-normal">
-                      <StatusIcon status={exp.status} />
-                      {exp.status === "on-track" ? "On Track" : 
-                       exp.status === "challenging" ? "At Risk" : "Done"}
-                    </Badge>
-                    <span className="text-xs font-mono text-muted-foreground bg-muted px-2 py-1 rounded">
-                      {exp.sprint}
-                    </span>
-                  </div>
-                  <CardTitle className="text-lg">{exp.company}</CardTitle>
-                  <CardDescription className="font-medium text-primary">{exp.role}</CardDescription>
-                  <div className="text-xs text-muted-foreground mt-1">{exp.period}</div>
-                </CardHeader>
-                <CardContent className="pl-6">
-                  <p className="text-sm text-muted-foreground mb-4">
-                    {exp.description}
-                  </p>
-                  <ul className="space-y-2">
-                    {exp.items.map((item, i) => (
-                      <li key={i} className="text-sm flex items-start gap-2">
-                        <div className="mt-1.5 w-1.5 h-1.5 rounded-full bg-primary/40 shrink-0" />
-                        {item}
-                      </li>
-                    ))}
-                  </ul>
-                </CardContent>
-              </Card>
+              <div className="relative h-full transition-all duration-500 ease-out transform-style-3d group-hover/card:scale-105">
+                <Card className="h-full relative overflow-hidden border-t-4 border-t-primary/10 hover:border-t-primary transition-colors bg-card z-10">
+                  {/* Drag Handle Visual */}
+                  <div className="absolute left-0 top-0 bottom-0 w-1 bg-border group-hover/card:bg-primary/20 transition-colors" />
+                  
+                  <CardHeader className="pb-3 pl-6">
+                    <div className="flex justify-between items-start mb-2">
+                      <Badge variant="outline" className="bg-background flex gap-1 items-center text-xs font-normal">
+                        <StatusIcon status={exp.status} />
+                        {exp.status === "on-track" ? "On Track" : 
+                         exp.status === "challenging" ? "At Risk" : "Completed"}
+                      </Badge>
+                      <span className="text-xs font-mono text-muted-foreground bg-muted px-2 py-1 rounded">
+                        {exp.sprint}
+                      </span>
+                    </div>
+                    <CardTitle className="text-lg">{exp.company}</CardTitle>
+                    <CardDescription className="font-medium text-primary">{exp.role}</CardDescription>
+                    <div className="text-xs text-muted-foreground mt-1">{exp.period}</div>
+                  </CardHeader>
+                  <CardContent className="pl-6 pb-6">
+                    <p className="text-sm text-muted-foreground mb-4 group-hover/card:hidden">
+                      {exp.description}
+                    </p>
+                    
+                    {/* Collapsed View Items */}
+                    <ul className="space-y-2 group-hover/card:hidden">
+                      {exp.items.map((item, i) => (
+                        <li key={i} className="text-sm flex items-start gap-2">
+                          <div className="mt-1.5 w-1.5 h-1.5 rounded-full bg-primary/40 shrink-0" />
+                          <span className="line-clamp-1">{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+
+                    {/* Expanded Details View */}
+                    <motion.div 
+                      className="hidden group-hover/card:block space-y-3"
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      <ul className="space-y-2">
+                        {exp.details?.map((detail, i) => (
+                          <li key={i} className="text-xs sm:text-sm flex items-start gap-2 text-foreground/90">
+                            <CheckCircle2 className="w-3 h-3 sm:w-4 sm:h-4 text-primary shrink-0 mt-0.5" />
+                            <span>{detail}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </motion.div>
+                  </CardContent>
+                </Card>
+              </div>
             </motion.div>
           ))}
         </div>
