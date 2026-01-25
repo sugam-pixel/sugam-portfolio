@@ -4,6 +4,7 @@ import Experience from "@/components/Experience";
 import Skills from "@/components/Skills";
 import CaseStudies from "@/components/CaseStudies";
 import Playground from "@/components/Playground";
+import AskSugam from "@/components/AskSugam";
 import Philosophy from "@/components/Philosophy";
 import Footer from "@/components/Footer";
 
@@ -31,6 +32,7 @@ export default function Home() {
             <Experience />
             <Skills />
             <CaseStudies />
+            <AskSugam />
             <Playground />
             <Philosophy />
           </div>

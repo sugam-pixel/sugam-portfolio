@@ -57,10 +57,10 @@ export default function Header() {
 
         {/* Desktop Nav */}
         <nav className="hidden md:flex items-center space-x-8 text-sm font-medium">
-          {["Experience", "Skills", "Work", "Playground"].map((item) => (
+          {["Experience", "Skills", "Work", "FAQ", "Playground"].map((item) => (
             <button
               key={item}
-              onClick={() => scrollToSection(item.toLowerCase())}
+              onClick={() => scrollToSection(item.toLowerCase() === "faq" ? "ask-sugam" : item.toLowerCase())}
               className="hover:text-primary/70 transition-colors"
             >
               {item}
