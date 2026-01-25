@@ -39,8 +39,8 @@ export default function Skills() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: idx * 0.1 }}
-            whileHover={{ y: -5, borderColor: "hsl(var(--primary))" }}
-            className="bg-card border rounded-xl p-6 transition-all duration-300 shadow-sm hover:shadow-md"
+            whileHover={{ y: -5 }}
+            className="bg-card border rounded-xl p-6 transition-all duration-300 shadow-sm hover:shadow-md hover:border-primary"
           >
             <h3 className="text-lg font-semibold mb-4 flex items-center gap-2">
               <span className="w-2 h-6 bg-primary/20 rounded-sm" />
