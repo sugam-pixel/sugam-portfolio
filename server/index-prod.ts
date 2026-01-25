@@ -1,13 +1,22 @@
 import fs from "node:fs";
 import { type Server } from "node:http";
 import path from "node:path";
+import { fileURLToPath } from "node:url";
 
 import express, { type Express, type Request } from "express";
 
 import runApp from "./app";
 
+// Get directory path for both ESM and CJS
+const getDirname = () => {
+  if (typeof __dirname !== "undefined") {
+    return __dirname;
+  }
+  return path.dirname(fileURLToPath(import.meta.url));
+};
+
 export async function serveStatic(app: Express, server: Server) {
-  const distPath = path.resolve(import.meta.dirname, "public");
+  const distPath = path.resolve(getDirname(), "public");
 
   if (!fs.existsSync(distPath)) {
     throw new Error(
