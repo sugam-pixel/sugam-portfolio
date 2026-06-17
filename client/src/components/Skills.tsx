@@ -11,8 +11,8 @@ const skills = {
   "Program Leadership": [
     "Multi-squad Orchestration", "Stakeholder Alignment", "Escalation Mgmt", "Sprint Governance", "Risk Gating", "OKRs & KPIs", "Vendor Management"
   ],
-  "Tools & Tech": [
-    "Jira / Confluence", "ADO / Smartsheet", "Python (Data Analysis)", "Tableau / PowerBI", "PRD / SRS Writing", "SQL (Basic)", "Linear"
+  "Tools & AI Ops": [
+    "Claude Code", "Jira / Linear", "Snowflake SQL", "Airtable / Smartsheet", "Python (Data Analysis)", "Tableau / PowerBI", "MCP / Automation Workflows"
   ]
 };
 

@@ -3,9 +3,18 @@ import { motion, useScroll, useSpring, AnimatePresence } from "framer-motion";
 import { Moon, Sun, FileText, Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
+const navItems = [
+  { label: "Experience", id: "experience" },
+  { label: "Skills", id: "skills" },
+  { label: "Case Studies", id: "work" },
+  { label: "How I Work", id: "ask-sugam" },
+  { label: "Playground", id: "playground" },
+];
+
 export default function Header() {
   const [isDark, setIsDark] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState("");
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, {
     stiffness: 100,
@@ -19,6 +28,26 @@ export default function Header() {
     if (isDarkStored) {
       document.documentElement.classList.add("dark");
     }
+  }, []);
+
+  useEffect(() => {
+    const sectionIds = navItems.map((n) => n.id);
+    const observers: IntersectionObserver[] = [];
+
+    sectionIds.forEach((id) => {
+      const el = document.getElementById(id);
+      if (!el) return;
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) setActiveSection(id);
+        },
+        { threshold: 0.35, rootMargin: "-64px 0px 0px 0px" }
+      );
+      observer.observe(el);
+      observers.push(observer);
+    });
+
+    return () => observers.forEach((o) => o.disconnect());
   }, []);
 
   const toggleTheme = () => {
@@ -48,7 +77,7 @@ export default function Header() {
         style={{ scaleX }}
       />
       <div className="container mx-auto px-4 h-16 flex items-center justify-between">
-        <div 
+        <div
           className="font-bold text-lg tracking-tight cursor-pointer z-50 relative"
           onClick={() => scrollToSection("hero")}
         >
@@ -57,13 +86,20 @@ export default function Header() {
 
         {/* Desktop Nav */}
         <nav className="hidden md:flex items-center space-x-8 text-sm font-medium">
-          {["Experience", "Skills", "Work", "FAQ", "Playground"].map((item) => (
+          {navItems.map((item) => (
             <button
-              key={item}
-              onClick={() => scrollToSection(item.toLowerCase() === "faq" ? "ask-sugam" : item.toLowerCase())}
-              className="hover:text-primary/70 transition-colors"
+              key={item.id}
+              onClick={() => scrollToSection(item.id)}
+              className={`relative transition-colors hover:text-primary ${activeSection === item.id ? "text-primary" : "text-foreground/70"}`}
             >
-              {item}
+              {item.label}
+              {activeSection === item.id && (
+                <motion.div
+                  layoutId="nav-indicator"
+                  className="absolute -bottom-1 left-0 right-0 h-0.5 bg-primary rounded-full"
+                  transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                />
+              )}
             </button>
           ))}
         </nav>
@@ -78,11 +114,11 @@ export default function Header() {
               Resume
             </Button>
           </a>
-          
+
           {/* Mobile Menu Toggle */}
-          <Button 
-            variant="ghost" 
-            size="icon" 
+          <Button
+            variant="ghost"
+            size="icon"
             className="md:hidden rounded-full"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
@@ -100,13 +136,13 @@ export default function Header() {
               className="absolute top-0 left-0 right-0 bg-background border-b border-border p-4 pt-20 md:hidden shadow-xl"
             >
               <nav className="flex flex-col space-y-4 text-center">
-                {["Experience", "Skills", "Work", "Playground"].map((item) => (
+                {navItems.map((item) => (
                   <button
-                    key={item}
-                    onClick={() => scrollToSection(item.toLowerCase())}
-                    className="text-lg font-medium py-2 hover:text-primary/70 transition-colors"
+                    key={item.id}
+                    onClick={() => scrollToSection(item.id)}
+                    className={`text-lg font-medium py-2 transition-colors ${activeSection === item.id ? "text-primary" : "hover:text-primary/70"}`}
                   >
-                    {item}
+                    {item.label}
                   </button>
                 ))}
                 <a href="/Sugam_CV.pdf" download className="inline-flex justify-center pt-2">

@@ -1,49 +1,77 @@
-import { motion } from "framer-motion";
-import { Quote } from "lucide-react";
-import { useState, useEffect } from "react";
+import { motion, useInView } from "framer-motion";
+import { useRef, useEffect, useState } from "react";
 
-const quotes = [
-  "Clarity creates momentum.",
-  "Alignment reduces 80% of chaos.",
-  "Velocity is a byproduct of disciplined systems."
+const metrics = [
+  { value: 30, suffix: "+", label: "Programs Shipped", sub: "across AI, robotics & SaaS" },
+  { value: 150, suffix: "+", label: "Experts Managed", sub: "Mercor AI evaluation teams" },
+  { value: 95, suffix: "%", label: "On-Time Delivery", sub: "across 8 years of programs" },
+  { value: 6, suffix: "+", label: "AI Skills Built", sub: "Claude Code workflows in prod" },
+  { value: 70, suffix: "%", label: "Triage Time Saved", sub: "via AI-powered Intercom" },
+  { value: 0, suffix: " P0s", label: "At Go-Live", sub: "Techolution CV program" },
 ];
 
-export default function Philosophy() {
-  const [index, setIndex] = useState(0);
+function AnimatedCounter({ target, suffix }: { target: number; suffix: string }) {
+  const [count, setCount] = useState(0);
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true });
 
   useEffect(() => {
+    if (!inView) return;
+    let start = 0;
+    const duration = 1200;
+    const step = 16;
+    const increment = target / (duration / step);
     const timer = setInterval(() => {
-      setIndex((prev) => (prev + 1) % quotes.length);
-    }, 4000);
+      start += increment;
+      if (start >= target) {
+        setCount(target);
+        clearInterval(timer);
+      } else {
+        setCount(Math.floor(start));
+      }
+    }, step);
     return () => clearInterval(timer);
-  }, []);
+  }, [inView, target]);
 
   return (
-    <section className="py-24 bg-primary text-primary-foreground overflow-hidden relative">
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff10_1px,transparent_1px),linear-gradient(to_bottom,#ffffff10_1px,transparent_1px)] bg-[size:24px_24px] opacity-20" />
-      
-      <div className="container mx-auto px-4 text-center relative z-10">
-        <Quote className="w-12 h-12 mx-auto mb-8 opacity-50" />
-        
-        <div className="h-32 flex items-center justify-center">
-          <motion.div
-            key={index}
-            initial={{ opacity: 0, y: 20, filter: "blur(10px)" }}
-            animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-            exit={{ opacity: 0, y: -20, filter: "blur(10px)" }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-            className="text-3xl md:text-5xl font-bold tracking-tight text-balance max-w-4xl"
-          >
-            "{quotes[index]}"
-          </motion.div>
-        </div>
+    <span ref={ref} className="tabular-nums">
+      {count}{suffix}
+    </span>
+  );
+}
 
-        <div className="flex gap-2 justify-center mt-8">
-          {quotes.map((_, i) => (
-            <div 
-              key={i}
-              className={`w-2 h-2 rounded-full transition-all duration-500 ${i === index ? "bg-white w-8" : "bg-white/30"}`}
-            />
+export default function Philosophy() {
+  return (
+    <section className="py-20 bg-primary text-primary-foreground overflow-hidden relative">
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff08_1px,transparent_1px),linear-gradient(to_bottom,#ffffff08_1px,transparent_1px)] bg-[size:32px_32px]" />
+
+      <div className="container mx-auto px-4 relative z-10">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-center mb-12"
+        >
+          <h2 className="text-2xl sm:text-3xl font-bold mb-2">Impact at a Glance</h2>
+          <p className="text-primary-foreground/60 text-sm">8 years. Real numbers. No filler.</p>
+        </motion.div>
+
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-6 sm:gap-8">
+          {metrics.map((m, i) => (
+            <motion.div
+              key={m.label}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.08 }}
+              className="text-center group"
+            >
+              <div className="text-3xl sm:text-4xl font-extrabold tracking-tight mb-1 group-hover:scale-110 transition-transform duration-200">
+                <AnimatedCounter target={m.value} suffix={m.suffix} />
+              </div>
+              <div className="text-sm font-semibold mb-1">{m.label}</div>
+              <div className="text-[11px] text-primary-foreground/50 leading-tight">{m.sub}</div>
+            </motion.div>
           ))}
         </div>
       </div>

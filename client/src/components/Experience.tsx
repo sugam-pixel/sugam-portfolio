@@ -7,23 +7,26 @@ import { CheckCircle2, AlertCircle, Clock } from "lucide-react";
 const experiences = [
   {
     company: "Mercor",
-    role: "AI Program Manager",
+    role: "TPM II, AI Operations",
     period: "Jul 2025 – Present",
     status: "on-track",
-    sprint: "Q1",
-    description: "Leading multi-track AI evaluation & research programs.",
+    sprint: "Active",
+    description: "AI evaluation & data programs for Obsidian & OpenAI. Built Claude Code workflows across 6+ daily ops.",
     items: [
-      "Leading delivery for Top AI labs",
-      "Owning end-to-end execution & metrics",
-      "Coordinating parallel workstreams",
-      "Defining execution workflows"
+      "150+ expert contractors across 2 programs",
+      "6+ Claude Code AI workflows in production",
+      "AI-powered sourcing & rate estimation",
+      "Automated QC via review error analysis",
+      "Real-time batch drop alerts & monitoring",
+      "70% faster Intercom triage with AI"
     ],
     details: [
-      "Leading delivery of multi-track AI evaluation and research programs for global clients",
-      "Owning end-to-end execution including timelines, quality checks, and delivery metrics",
-      "Coordinating researchers, expert reviewers, and internal stakeholders across parallel workstreams",
-      "Defining execution workflows and review processes to ensure consistency and quality",
-      "Acting as primary delivery owner for client communication and program reporting"
+      "Owning Aesthetic Colosseum (Obsidian) + Project Babel (OpenAI) end-to-end — 150+ expert contractors, daily quality tracking, and client communication",
+      "Built 6+ Claude Code AI workflows: SSOT auto-fill, AHT reporting, batch drop alerts (every 2h), task hoarding detection (every 6h), and weekly 1:1 prep",
+      "Deployed AI-powered sourcing pipeline using geography-based rate estimation — shortlisted 85 from 118 candidates with composite scoring across YoE, interview score & outside wage",
+      "Automated quality control via /review-errors skill: parses Airtable CSV exports + queries Ferrum DB to surface major/minor task errors per reviewer in seconds",
+      "Reduced Intercom first-response time by ~70% using Maven AI agent for expert triage across two projects",
+      "Cut weekly 1:1 prep from 30 min to under 2 min using /update-11 Claude skill for live doc updates"
     ]
   },
   {

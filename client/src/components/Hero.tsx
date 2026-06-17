@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { FileText, Linkedin, ArrowRight, Video } from "lucide-react";
+import { FileText, Linkedin, ArrowRight, Video, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 
@@ -7,7 +7,7 @@ export default function Hero() {
   return (
     <section id="hero" className="min-h-screen pt-24 pb-12 flex items-center justify-center overflow-hidden relative">
       <div className="container mx-auto px-4 grid md:grid-cols-2 gap-12 items-center">
-        
+
         {/* Left Column */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -15,6 +15,21 @@ export default function Hero() {
           transition={{ duration: 0.6, ease: "easeOut" }}
           className="space-y-8"
         >
+          {/* Open to Work chip */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.05, duration: 0.4 }}
+          >
+            <Badge className="bg-green-500/10 text-green-700 dark:text-green-400 border border-green-500/30 rounded-full px-3 py-1 gap-1.5 text-xs font-medium">
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-500 opacity-75" />
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500" />
+              </span>
+              Open to Opportunities
+            </Badge>
+          </motion.div>
+
           <div className="space-y-4">
             <motion.h1 
               className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.1]"
@@ -55,11 +70,11 @@ export default function Hero() {
           >
             {[
               { label: "Programs Shipped", value: "30+" },
-              { label: "Engineers Led", value: "30" },
+              { label: "Experts Managed", value: "150+" },
               { label: "On-Time Releases", value: "95%" }
             ].map((stat) => (
               <div key={stat.label} className="text-center md:text-left">
-                <div className="text-xl sm:text-2xl md:text-3xl font-bold">{stat.value}</div>
+                <div className="text-xl sm:text-2xl md:text-3xl font-bold text-primary">{stat.value}</div>
                 <div className="text-[10px] sm:text-xs text-muted-foreground uppercase tracking-wider mt-1 leading-tight">{stat.label}</div>
               </div>
             ))}
@@ -107,9 +122,12 @@ export default function Hero() {
             className="relative z-10 mb-8"
           >
             <div className="relative w-48 h-48 sm:w-64 sm:h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-background shadow-2xl group">
-              <img 
-                src="/assets/photo.png" 
-                alt="Sugam Sharma" 
+              <img
+                src="/assets/photo.png"
+                alt="Sugam Sharma"
+                fetchPriority="high"
+                width={320}
+                height={320}
                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
               />
             </div>
@@ -169,8 +187,8 @@ export default function Hero() {
           >
             <div className="space-y-2 w-32">
               <div className="h-2 bg-muted rounded w-full overflow-hidden">
-                <motion.div 
-                  className="h-full bg-primary" 
+                <motion.div
+                  className="h-full bg-primary"
                   initial={{ width: "0%" }}
                   animate={{ width: "75%" }}
                   transition={{ duration: 1.5, delay: 1 }}
@@ -180,6 +198,19 @@ export default function Hero() {
                 <span>Sprint Progress</span>
                 <span>75%</span>
               </div>
+            </div>
+          </motion.div>
+
+          {/* AI-powered chip */}
+          <motion.div
+            className="absolute top-2 left-0 md:-left-8 bg-primary/10 border border-primary/20 p-2 rounded-lg z-20 hidden md:block"
+            animate={{ y: [0, -8, 0] }}
+            transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+            whileHover={{ scale: 1.1 }}
+          >
+            <div className="flex items-center gap-1.5 text-xs font-medium text-primary">
+              <Sparkles className="w-3 h-3" />
+              AI-Powered Ops
             </div>
           </motion.div>
         </div>
