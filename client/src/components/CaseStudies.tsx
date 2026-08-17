@@ -79,14 +79,15 @@ export default function CaseStudies() {
   const [expanded, setExpanded] = useState<string | null>(null);
 
   return (
-    <section id="work" className="py-24 bg-muted/30">
+    <section id="work" className="py-24 bg-muted/30 relative">
       <div className="container mx-auto px-4">
         <div className="mb-8 sm:mb-12">
-          <motion.h2 
+          <motion.h2
             className="text-2xl sm:text-3xl font-bold mb-3 sm:mb-4"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, y: 20, filter: "blur(6px)" }}
+            whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
             viewport={{ once: true }}
+            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
           >
             Case Studies
           </motion.h2>
@@ -100,7 +101,7 @@ export default function CaseStudies() {
               initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="bg-card rounded-xl border overflow-hidden cursor-pointer group hover:shadow-md transition-shadow"
+              className="glass-card rounded-xl overflow-hidden cursor-pointer group hover:shadow-lg hover:shadow-primary/10 hover:border-primary/30 transition-all"
               onClick={() => setExpanded(expanded === study.id ? null : study.id)}
             >
               <div className="p-4 sm:p-6 flex items-start justify-between gap-2">

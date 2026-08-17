@@ -107,13 +107,15 @@ export default function Experience() {
   });
 
   return (
-    <section id="experience" className="py-24 bg-muted/30" ref={containerRef}>
-      <div className="container mx-auto px-4 mb-8 sm:mb-12">
-        <motion.h2 
+    <section id="experience" className="py-24 bg-muted/30 relative" ref={containerRef}>
+      <div className="fade-edge-top" />
+      <div className="container mx-auto px-4 mb-8 sm:mb-12 relative">
+        <motion.h2
           className="text-2xl sm:text-3xl font-bold mb-3 sm:mb-4"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, y: 20, filter: "blur(6px)" }}
+          whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
           viewport={{ once: true }}
+          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
         >
           Experience Timeline
         </motion.h2>
@@ -134,10 +136,11 @@ export default function Experience() {
               transition={{ delay: index * 0.1 }}
               className="w-[260px] sm:w-[300px] md:w-[350px] group/card perspective-1000"
             >
-              <div className="relative h-full transition-all duration-500 ease-out transform-style-3d group-hover/card:scale-105">
-                <Card className="h-full relative overflow-hidden border-t-4 border-t-primary/10 hover:border-t-primary transition-colors bg-card z-10">
+              <div className="relative h-full transition-all duration-500 ease-out transform-style-3d group-hover/card:scale-105 group-hover/card:-translate-y-1">
+                <div className="absolute -inset-px rounded-xl bg-gradient-to-br from-primary/40 to-accent-2/30 opacity-0 group-hover/card:opacity-100 blur-md transition-opacity duration-500" />
+                <Card className="h-full relative overflow-hidden border-t-2 border-t-primary/20 group-hover/card:border-t-primary transition-colors glass-card z-10 shadow-sm group-hover/card:shadow-xl group-hover/card:shadow-primary/10">
                   {/* Drag Handle Visual */}
-                  <div className="absolute left-0 top-0 bottom-0 w-1 bg-border group-hover/card:bg-primary/20 transition-colors" />
+                  <div className="absolute left-0 top-0 bottom-0 w-1 bg-border group-hover/card:bg-gradient-to-b group-hover/card:from-primary group-hover/card:to-accent-2 transition-colors" />
                   
                   <CardHeader className="pb-3 pl-6">
                     <div className="flex justify-between items-start mb-2">

@@ -42,35 +42,38 @@ function AnimatedCounter({ target, suffix }: { target: number; suffix: string })
 
 export default function Philosophy() {
   return (
-    <section className="py-20 bg-primary text-primary-foreground overflow-hidden relative">
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff08_1px,transparent_1px),linear-gradient(to_bottom,#ffffff08_1px,transparent_1px)] bg-[size:32px_32px]" />
+    <section className="py-20 bg-gradient-to-br from-primary via-primary to-accent-2 text-primary-foreground overflow-hidden relative">
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff0a_1px,transparent_1px),linear-gradient(to_bottom,#ffffff0a_1px,transparent_1px)] bg-[size:32px_32px]" />
+      <div className="absolute -top-24 -right-24 w-96 h-96 rounded-full bg-white/10 blur-3xl" />
+      <div className="absolute -bottom-24 -left-24 w-96 h-96 rounded-full bg-black/10 blur-3xl" />
 
       <div className="container mx-auto px-4 relative z-10">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, y: 20, filter: "blur(6px)" }}
+          whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
           viewport={{ once: true }}
+          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
           className="text-center mb-12"
         >
           <h2 className="text-2xl sm:text-3xl font-bold mb-2">Impact at a Glance</h2>
-          <p className="text-primary-foreground/60 text-sm">8 years. Real numbers. No filler.</p>
+          <p className="text-primary-foreground/70 text-sm">8 years. Real numbers. No filler.</p>
         </motion.div>
 
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-6 sm:gap-8">
           {metrics.map((m, i) => (
             <motion.div
               key={m.label}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, y: 20, filter: "blur(6px)" }}
+              whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
               viewport={{ once: true }}
-              transition={{ delay: i * 0.08 }}
+              transition={{ delay: i * 0.08, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
               className="text-center group"
             >
               <div className="text-3xl sm:text-4xl font-extrabold tracking-tight mb-1 group-hover:scale-110 transition-transform duration-200">
                 <AnimatedCounter target={m.value} suffix={m.suffix} />
               </div>
               <div className="text-sm font-semibold mb-1">{m.label}</div>
-              <div className="text-[11px] text-primary-foreground/50 leading-tight">{m.sub}</div>
+              <div className="text-[11px] text-primary-foreground/60 leading-tight">{m.sub}</div>
             </motion.div>
           ))}
         </div>

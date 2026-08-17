@@ -88,24 +88,26 @@ export default function AskSugam() {
     <>
       <section id="ask-sugam" className="py-24 container mx-auto px-4 text-center">
         <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
-          whileInView={{ opacity: 1, scale: 1 }}
+          initial={{ opacity: 0, scale: 0.95, filter: "blur(6px)" }}
+          whileInView={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
           viewport={{ once: true }}
-          className="bg-primary/5 rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-12 relative overflow-hidden"
+          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+          className="relative rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-12 overflow-hidden border border-primary/20 bg-gradient-to-br from-primary/10 via-primary/5 to-accent-2/10"
         >
+          <div className="absolute inset-0 grid-overlay opacity-60" />
           <div className="absolute top-0 right-0 p-6 sm:p-12 opacity-10">
             <MessageCircle className="w-32 sm:w-48 md:w-64 h-32 sm:h-48 md:h-64 text-primary" />
           </div>
-          
+
           <div className="relative z-10 max-w-2xl mx-auto space-y-4 sm:space-y-6">
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold">Have a question about my approach?</h2>
             <p className="text-muted-foreground text-sm sm:text-base md:text-lg">
               Explore how I handle conflict, scope creep, risk, and delivery in high-stakes environments.
             </p>
-            
-            <Button 
-              size="lg" 
-              className="rounded-full h-14 px-8 text-lg gap-2 shadow-xl hover:scale-105 transition-transform"
+
+            <Button
+              size="lg"
+              className="rounded-full h-14 px-8 text-lg gap-2 shadow-xl shadow-primary/20 bg-gradient-to-r from-primary to-accent-2 border-0 hover:scale-105 hover:brightness-110 transition-all"
               onClick={() => setIsOpen(true)}
             >
               <MessageCircle className="w-5 h-5" />
@@ -129,7 +131,7 @@ export default function AskSugam() {
               initial={{ opacity: 0, scale: 0.9, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.9, y: 20 }}
-              className="w-full max-w-4xl h-[90vh] sm:h-[85vh] bg-card border shadow-2xl rounded-xl sm:rounded-2xl overflow-hidden flex flex-col mx-2"
+              className="w-full max-w-4xl h-[90vh] sm:h-[85vh] glass-card shadow-2xl rounded-xl sm:rounded-2xl overflow-hidden flex flex-col mx-2 bg-background/95"
               onClick={e => e.stopPropagation()}
             >
               {/* Header */}
@@ -191,7 +193,7 @@ export default function AskSugam() {
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: index * 0.05 }}
                     >
-                      <Card className="h-full hover:shadow-md transition-shadow duration-200 border-primary/10 group">
+                      <Card className="h-full glass-card hover:shadow-lg hover:shadow-primary/10 hover:border-primary/30 transition-all duration-300 group">
                         <div className="p-4 sm:p-5 md:p-6 space-y-3 sm:space-y-4">
                           <div className="flex items-start justify-between gap-3 sm:gap-4">
                             <h4 className="font-semibold text-sm sm:text-base md:text-lg leading-tight group-hover:text-primary transition-colors">

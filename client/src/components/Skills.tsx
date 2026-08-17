@@ -20,11 +20,12 @@ export default function Skills() {
   return (
     <section id="skills" className="py-24 container mx-auto px-4">
       <div className="mb-8 sm:mb-12">
-        <motion.h2 
+        <motion.h2
           className="text-2xl sm:text-3xl font-bold mb-3 sm:mb-4"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, y: 20, filter: "blur(6px)" }}
+          whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
           viewport={{ once: true }}
+          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
         >
           Skills Grid
         </motion.h2>
@@ -35,15 +36,15 @@ export default function Skills() {
         {Object.entries(skills).map(([category, items], idx) => (
           <motion.div
             key={category}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, y: 20, filter: "blur(6px)" }}
+            whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
             viewport={{ once: true }}
-            transition={{ delay: idx * 0.1 }}
-            whileHover={{ y: -5 }}
-            className="bg-card border rounded-xl p-4 sm:p-6 transition-all duration-300 shadow-sm hover:shadow-md hover:border-primary"
+            transition={{ delay: idx * 0.1, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+            whileHover={{ y: -4 }}
+            className="glass-card rounded-xl p-4 sm:p-6 transition-all duration-300 shadow-sm hover:shadow-lg hover:shadow-primary/10 hover:border-primary/40"
           >
             <h3 className="text-base sm:text-lg font-semibold mb-3 sm:mb-4 flex items-center gap-2">
-              <span className="w-1.5 sm:w-2 h-5 sm:h-6 bg-primary/20 rounded-sm" />
+              <span className="w-1.5 sm:w-2 h-5 sm:h-6 rounded-sm bg-gradient-to-b from-primary to-accent-2" />
               {category}
             </h3>
             <div className="flex flex-wrap gap-1.5 sm:gap-2">

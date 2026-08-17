@@ -338,11 +338,12 @@ export default function Playground() {
   return (
     <section id="playground" className="py-24 container mx-auto px-4">
       <div className="mb-8 sm:mb-12">
-        <motion.h2 
+        <motion.h2
           className="text-2xl sm:text-3xl font-bold mb-3 sm:mb-4"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, y: 20, filter: "blur(6px)" }}
+          whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
           viewport={{ once: true }}
+          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
         >
           PM Playground
         </motion.h2>
@@ -362,7 +363,7 @@ export default function Playground() {
         
         <div className="mt-6">
           <TabsContent value="sprint">
-            <Card>
+            <Card className="glass-card shadow-lg shadow-primary/5">
               <CardHeader>
                 <CardTitle>Sprint Capacity Game</CardTitle>
               </CardHeader>
@@ -373,7 +374,7 @@ export default function Playground() {
           </TabsContent>
           
           <TabsContent value="risk">
-            <Card>
+            <Card className="glass-card shadow-lg shadow-primary/5">
               <CardHeader>
                 <CardTitle>Velocity Calculator</CardTitle>
               </CardHeader>
@@ -384,7 +385,7 @@ export default function Playground() {
           </TabsContent>
           
           <TabsContent value="raci">
-            <Card>
+            <Card className="glass-card shadow-lg shadow-primary/5">
               <CardHeader>
                 <CardTitle>Interactive RACI</CardTitle>
               </CardHeader>
@@ -395,7 +396,7 @@ export default function Playground() {
           </TabsContent>
 
           <TabsContent value="matrix">
-            <Card>
+            <Card className="glass-card shadow-lg shadow-primary/5">
               <CardHeader>
                 <CardTitle>Impact vs Effort Matrix</CardTitle>
               </CardHeader>
@@ -406,7 +407,7 @@ export default function Playground() {
           </TabsContent>
 
           <TabsContent value="triage">
-            <Card>
+            <Card className="glass-card shadow-lg shadow-primary/5">
               <CardHeader>
                 <CardTitle>Bug Triage Simulator</CardTitle>
               </CardHeader>
