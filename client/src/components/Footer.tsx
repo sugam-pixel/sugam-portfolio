@@ -20,13 +20,14 @@ export default function Footer() {
   };
 
   return (
-    <footer id="contact" className="border-t bg-muted/10 relative">
+    <footer id="contact" className="border-t bg-muted/10 relative overflow-hidden">
+      <div className="aurora-bg opacity-50" />
       <motion.div
-        className="h-1 bg-primary absolute top-0 left-0"
+        className="h-[2px] bg-gradient-to-r from-primary to-accent-2 absolute top-0 left-0 z-10"
         style={{ width }}
       />
 
-      <div className="container mx-auto px-4 py-10 sm:py-16">
+      <div className="container mx-auto px-4 py-10 sm:py-16 relative z-10">
         <div className="grid gap-10 sm:gap-12 md:grid-cols-2 items-start">
           {/* Left — intro + social links */}
           <div className="text-center md:text-left">
@@ -37,7 +38,7 @@ export default function Footer() {
 
             <div className="flex flex-wrap justify-center md:justify-start gap-3 sm:gap-4 mb-8">
               <a href="mailto:sugam.sharma041@gmail.com">
-                <Button size="default" className="rounded-full gap-2 text-sm sm:text-base">
+                <Button size="default" className="rounded-full gap-2 text-sm sm:text-base bg-gradient-to-r from-primary to-accent-2 border-0 shadow-lg shadow-primary/20 hover:brightness-110 transition-all">
                   <Mail className="h-4 w-4" />
                   Email Directly
                 </Button>
@@ -58,10 +59,11 @@ export default function Footer() {
 
           {/* Right — contact form */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, y: 20, filter: "blur(6px)" }}
+            whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
             viewport={{ once: true }}
-            className="bg-card border border-border rounded-2xl p-6 sm:p-8 shadow-sm"
+            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+            className="glass-card rounded-2xl p-6 sm:p-8 shadow-lg shadow-primary/5"
           >
             {sent ? (
               <motion.div
@@ -102,7 +104,7 @@ export default function Footer() {
                   onChange={(e) => setForm({ ...form, message: e.target.value })}
                   className="rounded-xl resize-none"
                 />
-                <Button type="submit" className="w-full rounded-xl gap-2">
+                <Button type="submit" className="w-full rounded-xl gap-2 bg-gradient-to-r from-primary to-accent-2 border-0 shadow-lg shadow-primary/20 hover:brightness-110 transition-all">
                   <Send className="h-4 w-4" />
                   Send Message
                 </Button>

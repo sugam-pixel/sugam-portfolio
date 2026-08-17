@@ -23,11 +23,11 @@ export default function Header() {
   });
 
   useEffect(() => {
-    const isDarkStored = localStorage.getItem("theme") === "dark";
-    setIsDark(isDarkStored);
-    if (isDarkStored) {
-      document.documentElement.classList.add("dark");
-    }
+    const stored = localStorage.getItem("theme");
+    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    const shouldBeDark = stored ? stored === "dark" : prefersDark;
+    setIsDark(shouldBeDark);
+    document.documentElement.classList.toggle("dark", shouldBeDark);
   }, []);
 
   useEffect(() => {
@@ -73,12 +73,12 @@ export default function Header() {
   return (
     <header className="fixed top-0 left-0 right-0 z-50 glass">
       <motion.div
-        className="absolute top-0 left-0 right-0 h-1 bg-primary origin-left"
+        className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-primary via-accent-2 to-primary origin-left"
         style={{ scaleX }}
       />
       <div className="container mx-auto px-4 h-16 flex items-center justify-between">
         <div
-          className="font-bold text-lg tracking-tight cursor-pointer z-50 relative"
+          className="font-bold text-lg tracking-tight cursor-pointer z-50 relative text-gradient"
           onClick={() => scrollToSection("hero")}
         >
           Sugam Sharma
@@ -96,7 +96,7 @@ export default function Header() {
               {activeSection === item.id && (
                 <motion.div
                   layoutId="nav-indicator"
-                  className="absolute -bottom-1 left-0 right-0 h-0.5 bg-primary rounded-full"
+                  className="absolute -bottom-1 left-0 right-0 h-0.5 rounded-full bg-gradient-to-r from-primary to-accent-2"
                   transition={{ type: "spring", stiffness: 380, damping: 30 }}
                 />
               )}
@@ -133,7 +133,7 @@ export default function Header() {
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
-              className="absolute top-0 left-0 right-0 bg-background border-b border-border p-4 pt-20 md:hidden shadow-xl"
+              className="absolute top-0 left-0 right-0 bg-background/95 backdrop-blur-xl border-b border-border p-4 pt-20 md:hidden shadow-xl"
             >
               <nav className="flex flex-col space-y-4 text-center">
                 {navItems.map((item) => (
